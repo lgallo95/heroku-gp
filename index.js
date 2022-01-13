@@ -23,6 +23,11 @@ app.get('/hello', (req,res) => {
     res.json({ message: 'hey there'})
 })
 
+app.get("/", (req, res) => {
+    res.send(`
+    <h1> It works <h1>`)
+})
+
 const port = process.env.PORT || 9000
 
 app.listen(port, () => {
