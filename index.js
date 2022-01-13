@@ -15,17 +15,20 @@
 
 
  require('dotenv').config()
+ const path = require('path')
 
 const express = require('express')
 const app = express()
+
+app.use(express.json())
+app.use(express.static( path.join(__dirname, 'client/build')))
 
 app.get('/hello', (req,res) => {
     res.json({ message: 'hey there'})
 })
 
-app.get("/", (req, res) => {
-    res.send(`
-    <h1> It works <h1>`)
+app.get("*", (req, res) => {
+    res.sendFile(path.join(__dirname, 'client/build', 'index.html'))
 })
 
 const port = process.env.PORT || 9000
